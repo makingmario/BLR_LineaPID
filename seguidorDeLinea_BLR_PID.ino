@@ -62,61 +62,6 @@ void setup() {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void loop() 
 {
- /*
- Serial.begin(9600);//el LEDTX ya no indica estados 
- 
- while(1)
- {
-  
-      //-----------------------------------------------------------------------------------------
-      //----------------------------------IMPERIUM ENTRADAS--------------------------------------
-      //-----------------------------------------------------------------------------------------
-      //Envio valores de sensores
-      Serial.print("*C"+String(analogRead(A6))+"*"); //A6
-      Serial.print("*T"+String(analogRead(A3))+"*"); //A3
-      Serial.print("*E"+String(analogRead(A2))+"*"); //A2
-      Serial.print("*D"+String(analogRead(A1))+"*"); //A1
-      Serial.print("*B"+String(analogRead(A0))+"*"); //A0
-      //Envio color deseado para los sensores
-      if (analogRead(A6)<100) Serial.print("*GR255G0B0*"); //Red                              //A6
-      if (analogRead(A6)>=100&&analogRead(A6)<=700) Serial.print("*GR255G200B0*"); //Orange   //A6
-      if (analogRead(A6)>700) Serial.print("*GR0G255B0*"); //Green                            //A6
-      
-      if (analogRead(A3)<100) Serial.print("*LR255G0B0*"); //Red                              //A3
-      if (analogRead(A3)>=100&&analogRead(A3)<=700) Serial.print("*LR255G200B0*"); //Orange   //A3
-      if (analogRead(A3)>700) Serial.print("*LR0G255B0*"); //Green                            //A3
-
-      if (analogRead(A2)<100) Serial.print("*NR255G0B0*"); //Red                              //A2
-      if (analogRead(A2)>=100&&analogRead(A2)<=700) Serial.print("*NR255G200B0*"); //Orange   //A2
-      if (analogRead(A2)>700) Serial.print("*NR0G255B0*"); //Green                            //A2
-      
-      if (analogRead(A1)<100) Serial.print("*MR255G0B0*"); //Red                              //A1
-      if (analogRead(A1)>=100&&analogRead(A1)<=700) Serial.print("*MR255G200B0*"); //Orange   //A1
-      if (analogRead(A1)>700) Serial.print("*MR0G255B0*"); //Green                            //A1
-
-      if (analogRead(A0)<100) Serial.print("*HR255G0B0*"); //Red                              //A0
-      if (analogRead(A0)>=100&&analogRead(A0)<=700) Serial.print("*HR255G200B0*"); //Orange   //A0
-      if (analogRead(A0)>700) Serial.print("*HR0G255B0*"); //Green                            //A0
-
-      //-----------------------------------------------------------------------------------------
-      //Envio dato del pulsador
-      Serial.print("*K"+String(digitalRead(PUSH1))+"*");
-      //Envio color
-      if (digitalRead(PUSH1)==HIGH) Serial.print("*OR0G255B0*"); //green
-      else Serial.print("*OR255G0B0*"); //Red
-
-      //-----------------------------------------------------------------------------------------
-      //Envio dato del pulsador
-      Serial.print("*I"+String(digitalRead(PUSH2))+"*");
-      //Envio color
-      if (digitalRead(PUSH2)==HIGH) Serial.print("*JR0G255B0*"); //green
-      else Serial.print("JOR255G0B0*"); //Red
-      //-----------------------------------------------------------------------------------------
-       if(digitalRead(PUSH1)==LOW)digitalWrite(LED1,HIGH); else digitalWrite(LED1,LOW); 
-       if(digitalRead(PUSH2)==LOW)digitalWrite(LED2,HIGH); else digitalWrite(LED2,LOW); 
-      //-----------------------------------------------------------------------------------------       
-  } //while(1)
- */ 
    if(digitalRead(PUSH1)==LOW) 
    {
     delay(100);
@@ -129,13 +74,13 @@ void loop()
      
    if(digitalRead(PUSH2)==LOW) 
    {
-    delay(100);
+    delay(150);
     for(int i = 1; i<= inByte; i ++)
     {
       digitalWrite(LED2,HIGH);
-      delay(100);
+      delay(200);
       digitalWrite(LED2,LOW);
-      delay(400);
+      delay(300);
     }
     sensor = inByte;
    }
@@ -172,7 +117,7 @@ void loop()
 
     if(inByte==4)//si llegó 4?
     {
-    power_difference = proportional/16 + integral/10000 + derivative*1; //proportional/6 + integral/10000 + derivative*2;
+    power_difference = proportional/16 + integral/10000 + derivative*1; 
     maximo = 90;//
     }
     
@@ -202,6 +147,8 @@ void loop()
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /*
+Vista superior Basic Line 
+        Robot
        ......
      .A3 A2 A1.
    .            .      
